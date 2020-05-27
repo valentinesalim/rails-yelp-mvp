@@ -2,6 +2,7 @@
 <p>Find me in app/views/restaurants/show.html.erb</p>
 
 <%= render "/restaurants/form", restaurant: @restaurant %>
+<h3> Reviews </h3>
 <% if @restaurant.reviews.any? %>
   <ul>
     <% @restaurant.reviews.each do |review| %>

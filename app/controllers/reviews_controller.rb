@@ -16,7 +16,18 @@ class ReviewsController < ApplicationController
           render 'new'
         end
     end
+
+    def edit
+        @review = Review.find(params[:id])
+        @restaurant = @review.restaurant
+    end
     
+    def destroy
+        @review = Review.find(params[:id])
+        @review.destroy
+        redirect_to restaurant_path(@review.restaurant)
+    end
+
     private
     
     def find_restaurant
