@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
     before_action :find_restaurant, only: [:new, :create]
     def new
         @review = Review.new
+        @restaurant = Restaurant.find(params[:restaurant_id])
     end
     
     def create

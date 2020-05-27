@@ -2,8 +2,19 @@
 <p>Find me in app/views/restaurants/show.html.erb</p>
 
 <%= render "/restaurants/form", restaurant: @restaurant %>
-
-<%= link_to restaurant_path(@restaurant),
-    method: :delete,
-    data: { confirm: "Are you sure?" } do %>
+<% if @restaurant.reviews.any? %>
+  <ul>
+    <% @restaurant.reviews.each do |review| %>
+      <li>
+        <%= review.content %>
+        <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure??"} %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No reviews yet</p>
 <% end %>
+
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
+<%= link_to 'Back', restaurants_path %>
+<%= link_to "Add a review", new_restaurant_review_path(@restaurant)  %>
